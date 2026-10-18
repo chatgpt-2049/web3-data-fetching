@@ -9,7 +9,7 @@ function App({ Component, pageProps }: AppProps) {
     <Layout path="solutions/web3-data-fetching">
       <Head
         title="Web3 Data Fetching"
-        description="Learn how to fetch data from smart contracts"
+        description="Web3 Data Fetching"
       />
       <Component {...pageProps} />
     </Layout>

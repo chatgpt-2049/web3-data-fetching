@@ -58,8 +58,4 @@ target Node 24 rather than a newer runtime.
 
 Tailwind 4 requires modern browsers (Safari 16.4+, Chrome 111+, Firefox 128+).
 
-The homepage fetches the contract name from Ethereum mainnet at build time and
-revalidates hourly. Shared default RPC providers can be throttled. For reliable
-builds, set `ETHEREUM_RPC_URL` to your own Ethereum mainnet HTTPS RPC endpoint
-in Vercel project environment variables for Preview and Production, then redeploy.
-This variable is server-only; do not prefix it with `NEXT_PUBLIC_` or commit its value.
+The homepage is static. No contract, Ethereum RPC endpoint, or API key is required.
