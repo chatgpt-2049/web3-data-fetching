@@ -48,3 +48,14 @@ pnpm dev
 ```
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
+
+## Dependency updates and RPC access
+
+Use pnpm 10.28.0 (pinned in `package.json`). Run `pnpm lint`,
+`pnpm typecheck`, and `pnpm build` before deploying. TypeScript stays on 6.x
+and ESLint on 9.x to match the lint plugins' supported peer ranges. Node types
+target Node 24 rather than a newer runtime.
+
+Tailwind 4 requires modern browsers (Safari 16.4+, Chrome 111+, Firefox 128+).
+
+The homepage is static. No contract, Ethereum RPC endpoint, or API key is required.
