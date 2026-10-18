@@ -1,17 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Layout, Text, Page, Link, Code } from '@vercel/examples-ui'
+import { Text, Page, Link, Code } from '@vercel/examples-ui'
 import { ethers } from 'ethers'
-import { FC } from 'react'
+import type { PropsWithChildren } from 'react'
 import abi from '../lib/BAYC.abi.json'
 import { BORED_APE_YATCH_CLUB_ADDRESS } from '../constants'
 
-const contract = new ethers.Contract(
-  BORED_APE_YATCH_CLUB_ADDRESS,
-  abi,
-  ethers.getDefaultProvider()
-)
-
-const Snippet: FC = ({ children }) => {
+const Snippet = ({ children }: PropsWithChildren) => {
   return (
     <pre className="border-accents-2 border rounded-md bg-white overflow-x-auto p-6 transition-all">
       {children}
@@ -72,7 +66,7 @@ function Home({ contractName }: { contractName: string }) {
           <Link
             target="_blank"
             rel="noreferrer"
-            href="https://docs.ethers.io/v5/"
+            href="https://docs.ethers.org/v6/"
           >
             Ethers.js
           </Link>
@@ -127,6 +121,10 @@ const contract = new ethers.Contract(contractAddress, abi)
         <Snippet>
           {`// Server side
 export async function getStaticProps() {
+  const provider = process.env.ETHEREUM_RPC_URL
+    ? new ethers.JsonRpcProvider(process.env.ETHEREUM_RPC_URL, 'mainnet')
+    : ethers.getDefaultProvider('mainnet')
+  const contract = new ethers.Contract(BORED_APE_YATCH_CLUB_ADDRESS, abi, provider)
   const contractName = await contract.name()
 
   return {
@@ -151,11 +149,13 @@ const { data } = useSWR('name', () => contract.name())
   )
 }
 
-Home.Layout = Layout
-
 export default Home
 
 export async function getStaticProps() {
+  const provider = process.env.ETHEREUM_RPC_URL
+    ? new ethers.JsonRpcProvider(process.env.ETHEREUM_RPC_URL, 'mainnet')
+    : ethers.getDefaultProvider('mainnet')
+  const contract = new ethers.Contract(BORED_APE_YATCH_CLUB_ADDRESS, abi, provider)
   const contractName = await contract.name()
 
   return {

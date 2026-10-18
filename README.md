@@ -48,3 +48,18 @@ pnpm dev
 ```
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
+
+## Dependency updates and RPC access
+
+Use pnpm 10.28.0 (pinned in `package.json`). Run `pnpm lint`,
+`pnpm typecheck`, and `pnpm build` before deploying. TypeScript stays on 6.x
+and ESLint on 9.x to match the lint plugins' supported peer ranges. Node types
+target Node 24 rather than a newer runtime.
+
+Tailwind 4 requires modern browsers (Safari 16.4+, Chrome 111+, Firefox 128+).
+
+The homepage fetches the contract name from Ethereum mainnet at build time and
+revalidates hourly. Shared default RPC providers can be throttled. For reliable
+builds, set `ETHEREUM_RPC_URL` to your own Ethereum mainnet HTTPS RPC endpoint
+in Vercel project environment variables for Preview and Production, then redeploy.
+This variable is server-only; do not prefix it with `NEXT_PUBLIC_` or commit its value.

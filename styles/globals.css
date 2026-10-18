@@ -1,0 +1,4 @@
+@import "tailwindcss";
+@import "@vercel/examples-ui/globals.css";
+@config "../tailwind.config.js";
+@source "../node_modules/@vercel/examples-ui/dist";
